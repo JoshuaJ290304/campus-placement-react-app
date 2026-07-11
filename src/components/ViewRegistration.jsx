@@ -1,53 +1,74 @@
-return (
+import React, { useEffect, useState } from "react";
 
-<div className="container mt-5">
+const ViewRegistration = () => {
+  const [students, setStudents] = useState([]);
 
-<h2 className="text-center mb-4">
-View All Registrations
-</h2>
+  useEffect(() => {
+    fetch(
+      "https://raw.githubusercontent.com/anishpdm/demo-json-api/refs/heads/main/placement.json"
+    )
+      .then((response) => response.json())
+      .then((data) => setStudents(data))
+      .catch((error) => console.log(error));
+  }, []);
 
-<table className="table table-bordered table-striped">
+  return (
+    <div className="container mt-5">
+      <div className="card shadow">
 
-<thead className="table-dark">
+        <div className="card-header bg-success text-white">
+          <h3 className="text-center mb-0">View All Registrations</h3>
+        </div>
 
-<tr>
+        <div className="card-body">
 
-<th>Reg No</th>
-<th>Name</th>
-<th>Branch</th>
-<th>SSLC</th>
-<th>Plus Two</th>
-<th>UG</th>
-<th>PG</th>
+          <p className="fw-bold">
+            Total Students : {students.length}
+          </p>
 
-</tr>
+          <div className="table-responsive">
 
-</thead>
+            <table className="table table-bordered table-striped table-hover">
 
-<tbody>
+              <thead className="table-dark">
 
-{
-students.map((student,index)=>(
+                <tr>
+                  <th>Registration No</th>
+                  <th>Name</th>
+                  <th>Branch</th>
+                  <th>SSLC</th>
+                  <th>Plus Two</th>
+                  <th>UG Mark</th>
+                  <th>PG Mark</th>
+                </tr>
 
-<tr key={index}>
+              </thead>
 
-<td>{student.regno}</td>
-<td>{student.name}</td>
-<td>{student.branch}</td>
-<td>{student.sslc}</td>
-<td>{student.plustwo}</td>
-<td>{student.ugmark}</td>
-<td>{student.pgmark}</td>
+              <tbody>
 
-</tr>
+                {students.map((student, index) => (
+                  <tr key={index}>
+                    <td>{student.regno}</td>
+                    <td>{student.name}</td>
+                    <td>{student.branch}</td>
+                    <td>{student.sslc}</td>
+                    <td>{student.plustwo}</td>
+                    <td>{student.ugmark}</td>
+                    <td>{student.pgmark}</td>
+                  </tr>
+                ))}
 
-))
-}
+              </tbody>
 
-</tbody>
+            </table>
 
-</table>
+          </div>
 
-</div>
+        </div>
 
-)
+      </div>
+    </div>
+  );
+};
+
+export default ViewRegistration;
