@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 
+const API_URL =
+  "https://raw.githubusercontent.com/anishpdm/demo-json-api/refs/heads/main/placement.json";
+
 const ViewRegistration = () => {
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
-    fetch(
-      "https://raw.githubusercontent.com/anishpdm/demo-json-api/refs/heads/main/placement.json"
-    )
+    fetch(API_URL)
       .then((response) => response.json())
       .then((data) => setStudents(data))
       .catch((error) => console.log(error));
@@ -14,17 +15,16 @@ const ViewRegistration = () => {
 
   return (
     <div className="container mt-5">
+
       <div className="card shadow">
 
         <div className="card-header bg-success text-white">
-          <h3 className="text-center mb-0">View All Registrations</h3>
+          <h3 className="text-center mb-0">
+            View All Registrations
+          </h3>
         </div>
 
         <div className="card-body">
-
-          <p className="fw-bold">
-            Total Students : {students.length}
-          </p>
 
           <div className="table-responsive">
 
@@ -33,11 +33,11 @@ const ViewRegistration = () => {
               <thead className="table-dark">
 
                 <tr>
-                  <th>Registration No</th>
-                  <th>Name</th>
+                  <th>Registration Number</th>
+                  <th>Full Name</th>
                   <th>Branch</th>
-                  <th>SSLC</th>
-                  <th>Plus Two</th>
+                  <th>SSLC Mark</th>
+                  <th>Plus Two Mark</th>
                   <th>UG Mark</th>
                   <th>PG Mark</th>
                 </tr>
@@ -47,6 +47,7 @@ const ViewRegistration = () => {
               <tbody>
 
                 {students.map((student, index) => (
+
                   <tr key={index}>
                     <td>{student.regno}</td>
                     <td>{student.name}</td>
@@ -56,6 +57,7 @@ const ViewRegistration = () => {
                     <td>{student.ugmark}</td>
                     <td>{student.pgmark}</td>
                   </tr>
+
                 ))}
 
               </tbody>
@@ -67,6 +69,7 @@ const ViewRegistration = () => {
         </div>
 
       </div>
+
     </div>
   );
 };
