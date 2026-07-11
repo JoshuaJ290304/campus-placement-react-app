@@ -1,27 +1,53 @@
-import React, { useEffect, useState } from "react";
+return (
 
-const ViewRegistration = () => {
+<div className="container mt-5">
 
-    const [students, setStudents] = useState([]);
+<h2 className="text-center mb-4">
+View All Registrations
+</h2>
 
-    useEffect(() => {
+<table className="table table-bordered table-striped">
 
-        fetch("https://raw.githubusercontent.com/anishpdm/demo-json-api/refs/heads/main/placement.json")
-            .then(response => response.json())
-            .then(data => setStudents(data));
+<thead className="table-dark">
 
-    }, []);
+<tr>
 
-    return (
-        <div className="container mt-5">
-            <h2 className="text-center">
-                View All Registrations
-            </h2>
+<th>Reg No</th>
+<th>Name</th>
+<th>Branch</th>
+<th>SSLC</th>
+<th>Plus Two</th>
+<th>UG</th>
+<th>PG</th>
 
-            <p>Total Students : {students.length}</p>
+</tr>
 
-        </div>
-    );
-};
+</thead>
 
-export default ViewRegistration;
+<tbody>
+
+{
+students.map((student,index)=>(
+
+<tr key={index}>
+
+<td>{student.regno}</td>
+<td>{student.name}</td>
+<td>{student.branch}</td>
+<td>{student.sslc}</td>
+<td>{student.plustwo}</td>
+<td>{student.ugmark}</td>
+<td>{student.pgmark}</td>
+
+</tr>
+
+))
+}
+
+</tbody>
+
+</table>
+
+</div>
+
+)
