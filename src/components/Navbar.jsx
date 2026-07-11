@@ -1,13 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 const Navbar = () => {
+
+  const location = useLocation()
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
 
       <div className="container">
 
-        <Link className="navbar-brand" to="/">
+        <Link className="navbar-brand fw-bold" to="/">
           Campus Placement
         </Link>
 
@@ -25,25 +29,37 @@ const Navbar = () => {
           <ul className="navbar-nav ms-auto">
 
             <li className="nav-item">
-              <Link className="nav-link" to="/">
+              <Link
+                className={`nav-link ${location.pathname === "/" ? "active" : ""}`}
+                to="/"
+              >
                 Add Registration
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/search">
+              <Link
+                className={`nav-link ${location.pathname === "/search" ? "active" : ""}`}
+                to="/search"
+              >
                 Search
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/delete">
+              <Link
+                className={`nav-link ${location.pathname === "/delete" ? "active" : ""}`}
+                to="/delete"
+              >
                 Delete
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/view">
+              <Link
+                className={`nav-link ${location.pathname === "/view" ? "active" : ""}`}
+                to="/view"
+              >
                 View All
               </Link>
             </li>
@@ -55,6 +71,7 @@ const Navbar = () => {
       </div>
 
     </nav>
+
   )
 }
 
